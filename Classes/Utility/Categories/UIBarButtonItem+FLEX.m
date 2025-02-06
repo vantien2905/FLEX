@@ -69,4 +69,18 @@
     return self;
 }
 
+- (void)flex_setWidth:(CGFloat)width {
+    if (self.customView) {
+        // Adjust the width of the custom view
+        CGRect frame = self.customView.frame;
+        frame.size.width = width;
+        self.customView.frame = frame;
+    } else if ([self respondsToSelector:@selector(setWidth:)]) {
+        // Set the width for fixed spaces (uses the public width property)
+        self.width = width;
+    } else {
+        NSLog(@"Warning: flex_setWidth is only applicable to custom views or fixed space items.");
+    }
+}
+
 @end
