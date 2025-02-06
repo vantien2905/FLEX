@@ -336,10 +336,9 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
         self.openTabsToolbarItem,
     ];
     
+    // Set the width of toolbar items safely using public APIs
     for (UIBarButtonItem *item in self.toolbarItems) {
-        [item _setWidth:60];
-        // This does not work for anything but fixed spaces for some reason
-        // item.width = 60;
+        [item flex_setWidth:60]; // Use the custom flex_setWidth method
     }
     
     // Disable tabs entirely when not presented by FLEXExplorerViewController
